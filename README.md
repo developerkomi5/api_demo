@@ -1,16 +1,36 @@
-# api_demo
+I have created a this app for learn API integration in Flutter from scratch to advance level. If you are a new bee and looking for a flutter resource regarding API integration then you will find it interesting. Here is what we will learn in this app. 
 
-A new Flutter project.
+Introduction to APIS.
 
-## Getting Started
+Understanding of JSON Structure.
 
-This project is a starting point for a Flutter application.
+What is Postman, how it helps us to understand the JSON Response.
 
-A few resources to get you started if this is your first Flutter project:
+What is model, what are Plugins and how different Plugins help us to create models of our API JSON data.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+How we can parse JSON data via Model. GET APIS
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+What are Get APIS
+
+What are different scenarios to handle Get API
+
+Integrate Get APIS with Plugins Model and show data into List\
+
+Integrate Get APIS with your own Model and show data into List
+
+Integrate Get APIS with without Model and show data into List
+
+Very Complex JSON practical Example
+
+POST APIS
+
+What is POST API
+How do Post APIS work
+Implement Login & Sign Up with with REST API in flutter
+Upload Single Image onto server via HTTP Request Example
+Upload Multiple images to server
+Upload data in arrays to server
+What is MVVM, what is the importance of learning MVVM architecture.
+
+
+Covering all the above concepts into a single app. So what keeps you stopping to learn Flutter, let's start. Happy flirting with Flutter.
