@@ -77,6 +77,7 @@ class _GetApiTutorialsState extends State<GetApiTutorials> {
   }
 }
 
+// ignore: must_be_immutable
 class ReusableWidget extends StatelessWidget {
   late String title, subTitle;
   final VoidCallback onPress;
