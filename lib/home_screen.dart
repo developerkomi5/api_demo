@@ -1,90 +1,84 @@
-import 'dart:convert';
-import 'package:api_demo/models/posts_model.dart';
+import 'package:api_demo/getapi/get_api_screen.dart';
+import 'package:api_demo/postapi/post_api_screen.dart';
+// ignore: unnecessary_import
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:http/http.dart' as http;
+import 'getapi/drop_down_api.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomScreen extends StatefulWidget {
+  const HomScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  _HomScreenState createState() => _HomScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  //PostsModel is stored in postList array
-  List<PostsModel> postList = [];
-  //for hitting the api/ receiving the response of api and parse it to PostsModel
-  Future<List<PostsModel>> getPostApi() async {
-    final response =
-        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
-    var data = jsonDecode(response.body.toString());
-    if (response.statusCode == 200) {
-      postList
-          .clear(); //for not refreshing the data all the time you do hot reload
-      for (Map i in data) {
-        //adding all the data of that url/api if status code is 200
-        postList.add(PostsModel.fromJson(i));
-      }
-      return postList;
-    } else {
-      return postList;
-    }
-  }
-
+class _HomScreenState extends State<HomScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("API Demo"),
+        centerTitle: true,
+        title: Text('Api Course'),
       ),
-      body: Column(
-        children: [
-          //expanded widget is for having all data in our screen in scrollable mode
-          Expanded(
-            //future function is for running the app when postapi is call
-            child: FutureBuilder(
-              future: getPostApi(),
-              builder: (context, snapshot) {
-                //till the response is not received this if is executed
-                if (!snapshot.hasData) {
-                  return Text('Loading...');
-                } else {
-                  return ListView.builder(
-                      itemCount: postList.length,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Title',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(postList[index].title.toString()),
-                                const SizedBox(height: 5),
-                                const Text(
-                                  'Description',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                const SizedBox(height: 5),
-                                Text(postList[index].body.toString()),
-                              ],
-                            ),
-                          ),
-                        );
-                      });
-                }
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        child: Column(
+          children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => GetApiTutorials()));
               },
+              child: const ListTile(
+                leading: CircleAvatar(
+                  radius: 25,
+                  child: Text('G'),
+                ),
+                title: Text('Get Apis '),
+                subtitle: Text("1. What are Get APIS \n"
+                    "2. What are different scenarios to handle Get API \n "
+                    "3. Integrate Get APIS  Plugins Model and shows data into List\n "
+                    "4. Integrate Get APIS  your own Model and show data into List\n "
+                    "5. Integrate Get APIS  without Model and show data into List\n "
+                    "6. Very Complex JSON practical Example"),
+                trailing: Icon(Icons.arrow_forward),
+              ),
             ),
-          )
-        ],
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => PostApiScreen()));
+              },
+              child: const ListTile(
+                leading: CircleAvatar(
+                  radius: 25,
+                  child: Text('P'),
+                ),
+                title: Text('Post Apis '),
+                subtitle: Text(
+                    'Integration of post apis with example and with different scenario.'),
+                trailing: Icon(Icons.arrow_forward),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => DropDownApi()));
+              },
+              child: const ListTile(
+                leading: CircleAvatar(
+                  radius: 25,
+                  child: Text('D'),
+                ),
+                title: Text('Drop Down'),
+                subtitle: Text('Loading data from api into dropdown'),
+                trailing: Icon(Icons.arrow_forward),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
